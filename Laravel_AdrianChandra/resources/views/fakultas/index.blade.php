@@ -14,6 +14,10 @@
         <li>Belum ada data</li>
     @endif
 </ul>
+
+<x-alert/>
 @endsection
+
+
 
 {{-- @include('layout.footer') --}}
