@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <h1>{{ $kampus }}</h1>
+    <h1>{{ 'Universitas Multi Data Palembang' }}</h1>
     <hr>
 
     @yield('content')
