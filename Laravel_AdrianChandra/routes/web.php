@@ -120,3 +120,7 @@ Route::get('/prodi/all-join-facade', [ProdiController::class, 'allJoinFacade']);
 Route::get('/prodi/all-join-elq', [ProdiController::class, 'allJoinElq']);
 
 Route::get('/mahasiswa/all-join-elq', [MahasiswaController::class, 'allJoinElq']);
+
+Route::get('/prodi/create', [ProdiController::class, 'create'])->name('prodi.create');
+
+Route::post('prodi/store', [ProdiController::class, 'store']);
