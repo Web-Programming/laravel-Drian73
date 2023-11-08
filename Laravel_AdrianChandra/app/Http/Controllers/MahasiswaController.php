@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\Prodi;
 
 class MahasiswaController extends Controller
 {
@@ -23,13 +24,15 @@ class MahasiswaController extends Controller
             'nama' => 'Hocwin',
             'npm' => '2226250078',
             'tempat_lahir' => 'Bandung',
-            'tanggal_lahir' => date("Y-m-d")
+            'tanggal_lahir' => date("Y-m-d"),
+            'prodi_id' => '1'
             ],
             [
             'nama' => 'Satria',
             'npm' => '2226250082',
             'tempat_lahir' => 'Jakarta',
-            'tanggal_lahir' => date("Y-m-d")
+            'tanggal_lahir' => date("Y-m-d"),
+            'prodi_id' => '1'
             ],
         ]
         );
@@ -55,5 +58,11 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::all();
         //dump($allmahasiswa);
         return view('mahasiswa.index', ['allmahasiswa' => $mahasiswa, 'tempat_lahir' => $tempat_lahir]);
+    }
+
+    public function allJoinElq() {
+        $kampus = "Universitas Multi Data Palembang";
+        $mahasiswa = Mahasiswa::has('prodi')->get();
+        return view('mahasiswa.index', ['allmahasiswa' => $mahasiswa, 'kampus' => $kampus]);
     }
 }
