@@ -47,12 +47,22 @@ class ProdiController extends Controller
 
         $validateData = $request->validate([
             'nama' => 'required|min:5|max:20',
+            'foto' => 'required|file|image|max:5000',
         ]);
+
+        //ambil ekstensi file
+        $ext = $request->foto->getClientOriginalExtension();
+
+        //rename nama file
+        $nama_file = "foto-" . time() . "." . $ext;
+        $path = $request->foto->storeAs('public', $nama_file);
+
         //dump($validateData);
         //echo $validateData['nama'];
 
         $prodi = new Prodi(); //buat object prodi
         $prodi->nama = $validateData['nama']; //simpan nilai input ($validateData['nama]) ke dalam property nama prodi ($prodi->nama)
+        $prodi->foto = $nama_file;
         $prodi->save(); //simpan ke dalam tabel prodis
 
         //return "Data prodi $prodi->nama berhasil disimpan ke database"; //tampilkan pesan berhasil
